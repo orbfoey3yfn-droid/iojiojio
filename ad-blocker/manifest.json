@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "حاصد الإعلانات",
+    "version": "1.0.0",
+    "description": "إضافة لحجب الإعلانات والمواقع المزعجة",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "tabs"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "icons": {
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon48.png"
+    }
+}

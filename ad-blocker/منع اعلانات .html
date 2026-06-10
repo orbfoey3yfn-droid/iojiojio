@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ حاصد الإعلانات</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="shield-icon">🛡️</div>
+                <h1>حاصد الإعلانات</h1>
+                <p class="tagline">تصفح الإنترنت بدون إعلانات مزعجة</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- قسم الإحصائيات -->
+            <section class="stats-section">
+                <h2>📊 إحصائيات الحجب</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="adsBlocked">0</span>
+                        <span class="stat-label">إعلان محجوب</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="trackersBlocked">0</span>
+                        <span class="stat-label">متتبع محجوب</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="dataSaved">0</span>
+                        <span class="stat-label">ميغابايت موفرة</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="timeSaved">0</span>
+                        <span class="stat-label">ثانية موفرة</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم التحكم -->
+            <section class="control-section">
+                <h2>⚙️ إعدادات الحجب</h2>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <span>حجب الإعلانات</span>
+                        <label class="switch">
+                            <input type="checkbox" id="blockAds" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="control-item">
+                        <span>حجب المتتبعات</span>
+                        <label class="switch">
+                            <input type="checkbox" id="blockTrackers" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="control-item">
+                        <span>حجب النوافذ المنبثقة</span>
+                        <label class="switch">
+                            <input type="checkbox" id="blockPopups" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="control-item">
+                        <span>حجب تعدين العملات</span>
+                        <label class="switch">
+                            <input type="checkbox" id="blockMining" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم القائمة البيضاء -->
+            <section class="whitelist-section">
+                <h2>📋 القائمة البيضاء</h2>
+                <p class="section-desc">المواقع المسموح لها بإظهار الإعلانات</p>
+                <div class="whitelist-input">
+                    <input type="text" id="whitelistInput" placeholder="أدخل رابط الموقع...">
+                    <button id="addWhitelist" class="btn btn-primary">إضافة</button>
+                </div>
+                <div id="whitelistContainer" class="whitelist-items"></div>
+            </section>
+
+            <!-- قسم القوائم المحجوبة -->
+            <section class="blocked-section">
+                <h2>🚫 القوائم المحجوبة</h2>
+                <div class="filter-tabs">
+                    <button class="tab active" data-filter="all">الكل</button>
+                    <button class="tab" data-filter="ads">إعلانات</button>
+                    <button class="tab" data-filter="trackers">متتبعات</button>
+                    <button class="tab" data-filter="popups">نوافذ منبثقة</button>
+                </div>
+                <div id="blockedLog" class="blocked-log">
+                    <div class="empty-state">
+                        <span>🎉</span>
+                        <p>لا توجد عناصر محجوبة حالياً</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم تثبيت الإضافة -->
+            <section class="install-section">
+                <h2>📥 تثبيت الإضافة</h2>
+                <p class="section-desc">لتتمكن من حجب الإعلانات في كل الصفحات، اتبع الخطوات التالية:</p>
+                
+                <div class="install-methods">
+                    <div class="method-card">
+                        <h3>🔖 طريقة البوكليت</h3>
+                        <p>اسحب هذا الزر إلى شريط المفضلة:</p>
+                        <a href="javascript:void(0)" id="bookmarklet" class="bookmarklet-btn" 
+                           onclick="return false;">
+                            🛡️ حجب الإعلانات
+                        </a>
+                        <p class="hint">اسحب الزر ← شريط المفضلة</p>
+                    </div>
+
+                    <div class="method-card">
+                        <h3>🌐 إضافة المتصفح</h3>
+                        <p>قم بتثبيت الإضافة الرسمية:</p>
+                        <button class="btn btn-chrome" onclick="installExtension('chrome')">
+                            Chrome
+                        </button>
+                        <button class="btn btn-firefox" onclick="installExtension('firefox')">
+                            Firefox
+                        </button>
+                        <button class="btn btn-edge" onclick="installExtension('edge')">
+                            Edge
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الكود -->
+            <section class="code-section">
+                <h2>💻 كود الحجب</h2>
+                <p class="section-desc">انسخ هذا الكود وأضفه في Console المتصفح:</p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode()">📋 نسخ</button>
+                    <pre><code id="adBlockCode"></code></pre>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>🛡️ حاصد الإعلانات © 2024 - تصفح آمن وخالٍ من الإعلانات</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
